@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if ([self respondsToSelector:@selector( setAutomaticallyAdjustsScrollViewInsets:)]) {
-        self.automaticallyAdjustsScrollViewInsets = NO;//ios以上，不让有导航条的时候，视图自动往下压64
+        self.automaticallyAdjustsScrollViewInsets = NO;//ios7以上，不让有导航条的时候，视图自动往下压64
     }
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[WBStatusHelper imageNamed:@"toolbar_compose_highlighted"] style:UIBarButtonItemStylePlain target:self action:@selector(sendStatus)];
@@ -80,7 +80,7 @@
     [self.view addSubview:indicator];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        for (int i = 0; i <= 0; i++) {//7
+        for (int i = 0; i <= 7; i++) {//7
             NSData *data = [NSData dataNamed:[NSString stringWithFormat:@"weibo_%d.json",i]];
             WBTimelineItem *item = [WBTimelineItem modelWithJSON:data];
             for (WBStatus *status in item.statuses) {
@@ -91,7 +91,7 @@
         }
         
         // 复制一下，让列表长一些，不至于滑两下就到底了
-        //[_layouts addObjectsFromArray:_layouts];
+        [_layouts addObjectsFromArray:_layouts];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             self.title = [NSString stringWithFormat:@"Weibo (loaded:%d)", (int)_layouts.count];
