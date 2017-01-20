@@ -33,6 +33,7 @@
         NSRange bindlingRange = NSMakeRange(range.location, range.length - 1);
         YYTextBinding *binding = [YYTextBinding bindingWithDeleteConfirm:YES];
         [text setTextBinding:binding range:bindlingRange]; /// Text binding
+        //设置识别的邮箱文本的颜色
         [text setColor:[UIColor colorWithRed:0.000 green:0.519 blue:1.000 alpha:1.000] range:bindlingRange];
         changed = YES;
     }];
@@ -48,7 +49,7 @@
 
 @implementation YYTextBindingExample
 
-
+//为什么不能完全识别邮箱
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -56,20 +57,23 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"sjobs@apple.com, apple@apple.com, banana@banana.com, pear@pear.com "];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"chenzhongsongxxx, sjobs@apple.com, apple@apple.com, banana@banana.com, pear@pear.com "];
     text.font = [UIFont systemFontOfSize:17];
     text.lineSpacing = 5;//行间距
-    text.color = [UIColor blackColor];
+    text.color = [UIColor blackColor];//被识别的邮箱文本的颜色覆盖了
     
     YYTextView *textView = [YYTextView new];
     textView.attributedText = text;
-    textView.textParser = [YYTextExampleEmailBindingParser new];
+    textView.textParser = [YYTextExampleEmailBindingParser new];//邮箱约束解析
     textView.size = self.view.size;
     textView.textContainerInset = UIEdgeInsetsMake(10, 10, 10, 10);
     textView.delegate = self;
     if (kiOS7Later) {
         textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     }
+//    else {
+//        textView.height -= 64;//是不是应该是44 ？
+//    }
     textView.contentInset = UIEdgeInsetsMake((kiOS7Later ? 64 : 0), 0, 0, 0);
     textView.scrollIndicatorInsets = textView.contentInset;
     [self.view addSubview:textView];

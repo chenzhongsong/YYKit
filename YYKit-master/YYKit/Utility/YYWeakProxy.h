@@ -12,11 +12,12 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+//Proxy,
 /**
  A proxy used to hold a weak object.
  It can be used to avoid retain cycles, such as the target in NSTimer or CADisplayLink.
- 
+ 用于保持弱对象的代理。
+ 它可以用来避免保留周期(循环引用)，如cadisplaylink NSTimer或目标。
  sample code:
  
      @implementation MyView {
@@ -34,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YYWeakProxy : NSProxy
 
 /**
- The proxy target.
+ The proxy target.//代理目标
  */
 @property (nullable, nonatomic, weak, readonly) id target;
 

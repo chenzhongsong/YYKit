@@ -167,7 +167,7 @@
     
     _imageLinks = links;
     [self.tableView reloadData];
-    [self scrollViewDidScroll:self.tableView];
+    [self _scrollViewDidScroll:self.tableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -213,7 +213,7 @@
     return cell;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)_scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat viewHeight = scrollView.height + scrollView.contentInset.top;
     for (YYWebImageExampleCell *cell in [self.tableView visibleCells]) {
         CGFloat y = cell.centerY - scrollView.contentOffset.y;

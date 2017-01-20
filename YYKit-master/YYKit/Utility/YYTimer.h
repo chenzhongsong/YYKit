@@ -15,12 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  YYTimer is a thread-safe timer based on GCD. It has similar API with `NSTimer`.
- YYTimer object differ from NSTimer in a few ways:
+ YYTimer object differ from NSTimer in a few ways://differ from,与…不同;in a few ways,从几方面
  
  * It use GCD to produce timer tick, and won't be affected by runLoop.
  * It make a weak reference to the target, so it can avoid retain cycles.
  * It always fire on main thread.
- 
+ *使用GCD产生定时器滴答，不会受runloop侵袭。
+ *它对目标作弱引用，所以它可以避免保留周期。
+ *它总是在主线程上开火。
  */
 @interface YYTimer : NSObject
 
